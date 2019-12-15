@@ -10,10 +10,41 @@ class App extends React.Component {
 
   addTodo = todo => {
     const newToDo = [todo, ...this.state.todolist];
-    localStorage.setItem("todolist", JSON.stringify(newToDo));
     this.setState({
       todolist: newToDo
     });
+    localStorage.setItem("todolist", JSON.stringify(newToDo));
+  };
+
+  toggleStatus = id => {
+    this.setState(
+      {
+        todolist: this.state.todolist.map(obj => {
+          if (Number(obj.id) === Number(id)) {
+            return {
+              ...obj,
+              status: !obj.status
+            };
+          } else {
+            return obj;
+          }
+        })
+      },
+      this.componentDidUpdate
+    );
+  };
+
+  deleteTodo = id => {
+    this.setState(
+      {
+        todolist: this.state.todolist.filter(obj => {
+          if (Number(obj.id) !== Number(id)) {
+            return obj;
+          }
+        })
+      },
+      this.componentDidUpdate
+    );
   };
 
   componentDidMount = () => {
@@ -28,7 +59,12 @@ class App extends React.Component {
     });
   };
 
+  componentDidUpdate = () => {
+    localStorage.setItem("todolist", JSON.stringify(this.state.todolist));
+  };
+
   render() {
+    console.log(this.state.todolist);
     return (
       <div className="container d-flex justify-content-center p-5">
         <div className="col-lg-12">
@@ -37,7 +73,11 @@ class App extends React.Component {
               <h4 className="card-title">Awesome Todo list</h4>
               <ToDo onSubmit={this.addTodo} />
               <hr />
-              <ToDoList data={this.state.todolist} />
+              <ToDoList
+                data={this.state.todolist}
+                toggle={this.toggleStatus}
+                delete={this.deleteTodo}
+              />
             </div>
           </div>
         </div>

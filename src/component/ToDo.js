@@ -39,7 +39,6 @@ class ToDo extends React.Component {
   render() {
     return (
       <div>
-        <h3>My To Do List</h3>
         <form onSubmit={this.onSubmit}>
           <div className="d-flex">
             <input
