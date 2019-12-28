@@ -8,7 +8,7 @@ This sample app was a part of react workshop.
 First clone this repository.
 
 ```bash
-git clone https://github.com/kabirbaidhya/react-todo-app.git
+git clone https://github.com/akamit21/react-todolist.git
 ```
 
 Install dependencies. Make sure you already have [`nodejs`](https://nodejs.org/en/) & [`npm`](https://www.npmjs.com/) installed in your system.
