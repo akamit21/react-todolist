@@ -37,11 +37,9 @@ class App extends React.Component {
   deleteTodo = id => {
     this.setState(
       {
-        todolist: this.state.todolist.filter(obj => {
-          if (Number(obj.id) !== Number(id)) {
-            return obj;
-          }
-        })
+        todolist: this.state.todolist
+          .filter(obj => Number(obj.id) !== Number(id))
+          .map(obj => obj)
       },
       this.componentDidUpdate
     );
@@ -64,7 +62,6 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.state.todolist);
     return (
       <div className="container d-flex justify-content-center p-5">
         <div className="col-lg-12">
