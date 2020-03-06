@@ -4,7 +4,6 @@ class ToDo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: "",
       todo: "",
       status: false
     };
@@ -12,15 +11,15 @@ class ToDo extends React.Component {
 
   onChange = e => {
     this.setState({
-      id: this.generateId(),
       [e.target.name]: e.target.value
     });
   };
 
   onSubmit = e => {
     e.preventDefault();
+    let row_id = this.generateId();
     let data = {
-      id: this.state.id,
+      id: row_id,
       todo: this.state.todo,
       status: this.state.status
     };
@@ -28,11 +27,11 @@ class ToDo extends React.Component {
   };
 
   generateId = () => {
-    let todolist = localStorage.getItem("todolist");
-    if (todolist == null) {
+    let todolist = JSON.parse(localStorage.getItem("todolist"));
+    console.log(todolist);
+    if (todolist.length === 0) {
       return 1;
     } else {
-      todolist = JSON.parse(todolist);
       return Number(todolist[0].id) + 1;
     }
   };

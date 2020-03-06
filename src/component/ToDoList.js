@@ -1,11 +1,6 @@
 import React from "react";
-import { object } from "prop-types";
 
 class ToDoList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>
